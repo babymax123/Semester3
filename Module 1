@@ -1,0 +1,89 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
+package contoh;
+
+import java.util.InputMismatchException;
+import java.util.Scanner;
+
+
+
+    public class Praktikum1 {
+    private static void loap() throws InputMismatchException {
+        Scanner input = new Scanner(System.in);
+        System.out.print("\nMasukan ulang NIM? (y/t) : "); 
+        String insertNimAgain = input.next();
+        //saya menggunakan try catch untuk membuat loopingan jika progam nim yang dimasukkan salah "jika progam yang dimasukkan tidak sesuai maka progam akan menampilkan y/t"
+        try {
+        //y loop
+            if(insertNimAgain.equalsIgnoreCase("y")) {
+                app();
+        //t end
+            } else if(insertNimAgain.equalsIgnoreCase("t")) {
+                System.out.println();
+                System.exit(0);
+            } else {
+                throw new InputMismatchException("Input yang anda masukan tidak sesuai");
+            }
+        //dan jika inputan tidak sesuai dengan apa yang sesuai dengan perintah maka akan kembali ke progam loap dan mengulang lagi "Masukan ulang NIM? (y/t)"
+        } catch (InputMismatchException err) {
+            System.out.println("\n" + err); loap();
+        }
+    }
+    private static void ChekNim(String nimFormat, String inputNim)
+            throws InputMismatchException,
+            StringIndexOutOfBoundsException {
+        try {
+            //akan terjadi membandingkan dan yang boleh di izinklan oleh progam cuman angka abjad tidak akan terdaftar pada progam ini
+            if(!inputNim.matches("[^a-zA-Z]+"))
+                throw new StringIndexOutOfBoundsException("NIM hanya boleh berisi angka");
+            if(inputNim.length() < 15 | inputNim.length() > 15)
+                //tidak boleh lebih dari 15 maupun kurang,thorow menangkap jika ada kesalahaan yang perlu di tangkap pada erornya dalam method atau kelasnya
+                throw new StringIndexOutOfBoundsException("NIM harus berjumlah 15 angka");
+            for(int index = 4; index < 12; index++) {
+                if(inputNim.charAt(index) != nimFormat.charAt(index - 4))
+                    //jika user tidak menginputkan sesuai yang ada di syarat maka akan menginput dibawah
+                    throw new InputMismatchException("NIM tidak sesuai format");
+            }
+            System.out.println("\nNIM benar");
+        //jika terjadi kesalahan pada menginputkan nim maka yang terjadi progam akan kembali ke atas ke loap
+        } catch (StringIndexOutOfBoundsException | InputMismatchException err) {
+            System.out.println("\n" + err); loap();
+        }
+    }
+    private static void app() {
+        Scanner input = new Scanner(System.in);
+        String nimFormat = "10370311";
+        System.out.println("\nCatatan : Format NIM harus berjumlah 15");
+        System.out.println("/nHarus sesuai , Tahun 10370311 nim mahasiswa");
+        System.out.print("\nMasukan NIM anda : "); 
+        String inputNim = input.next();
+        ChekNim(nimFormat, inputNim);
+        System.out.println();
+    }
+    //untuk menjalan kan progam di atas
+    public static void main(String[] args) {
+        app();
+    }
+}
+
+==============================================================================================================================================================
+
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
+package TugasPL;
+
+
+public class Tugas1 {
+    public static void main(String[] args) {
+        int[] arr = new int[5];
+        try {
+            arr[5] =  25;
+        } catch(IndexOutOfBoundsException e){
+            System.out.println(e);
+        }
+    }
+}
