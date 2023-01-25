@@ -1,0 +1,157 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
+package tugas66;
+
+/**
+ *
+ * @author ASUS
+ */
+
+
+
+import java.io.File;
+import java.io.FileWriter;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.util.Scanner;
+
+
+public class tugas6 {
+    String db = "D:\\database\\module6\\hasil.txt";
+    Scanner input = new Scanner(System.in);
+
+    /**
+     * Show detail about donation
+     */
+
+    void menu(){
+        do {
+            System.out.println("\n\t\t[ PENDATAAN MAHASISWA ]");
+            System.out.println(" ");
+            System.out.print("[1]. Isi Data Diri \n[2]. Data Mahasiswa\n[0]. exit\n");
+        
+            System.out.print("Masukkan pilihan anda :  ");
+            String InputNil = input.nextLine();
+            
+            if(InputNil.equals("0")){
+                break;
+            } else if(InputNil.equals("1")){
+                open_donation();
+                break;
+            } else if(InputNil.equals("2")){
+                list_donation();
+            }
+
+            System.out.flush();
+        } while(true);
+    }
+
+    // show menu donation
+    public void open_donation(){
+        do {
+            System.out.println("\nWhat things will you donate?");
+            System.out.print("[1]. Money\n[0]. back to menu\n");
+        
+            System.out.print(">> ");
+            String choose = input.nextLine();
+            if(choose.equals("0")){
+                menu();
+                break;
+            } else if(choose.equals("1")){
+                by_money();
+                break;
+            } 
+
+            System.out.flush();
+        } while(true);
+    }
+
+    // donate by money
+    private void by_money(){
+        System.out.println("\n[ Donate by Money ]");
+        
+        System.out.print("Name\t: ");
+        String name = input.nextLine();
+
+        /** 
+         * object : it can be social concern or natural disasters.
+         * examples : poverty, disablity, eruption, earthquake, flooding, etc.
+        */ 
+        System.out.print("Object\t: ");
+        String object = input.nextLine();
+
+        System.out.print("Nominal\t: ");
+        int value = input.nextInt();
+        input.nextLine();
+
+        int inNumber[] = {value};
+        String inString[][] = new String[][] {{name, object}};
+
+        do {
+            System.out.print("\nSubmit your donation? [Y/n]\n>> ");
+            String finish = input.nextLine().toLowerCase();
+
+            if(finish.equals("y")){
+                database(inNumber, inString);
+                menu();
+                break;
+            } else if(finish.equals("n")) {
+                System.out.println("Your data already discarded");
+                menu();
+                break;
+            }
+
+            System.out.flush();
+        } while(true);
+    }
+
+    /** Write input to file
+     * 
+     * @exception IOEXception for securing FileWriter
+     * @param inNumber  add (int) array as parameter
+     * @param inString  add (String) array as parameter
+     */
+    private void database(int inNumber[], String inString[][]){
+        try {
+            FileWriter writer = new FileWriter(db, true);
+            writer.append(inString[0][0]+"<>"+inString[0][1]+"<>"+inNumber[0]+"\n");
+            writer.close();
+        } catch (IOException e) {
+            System.out.println(e);
+        }
+    }
+
+    /** Read file and print it out
+     * 
+     * @exception FileNotFound to securing unexisting file
+     */
+    public void list_donation(){
+        int i = 1;
+
+        try {    
+            File src = new File(db);
+            Scanner read = new Scanner(src);
+
+            while (read.hasNextLine()) {
+                String print_out = read.nextLine();
+                String result[] = print_out.split("<>");
+                System.out.println(i+". "+result[0]+" "+result[1]+" "+result[2]);
+                i++;
+            }
+            read.close();
+        } catch (FileNotFoundException e) {
+            System.out.println(e);
+        }
+    }
+
+    /** Run entire code
+     * 
+     * @param args  default
+     */
+    public static void main(String[] args) {
+        tugas6 t1 = new tugas6();
+        t1.menu();
+    }
+}
