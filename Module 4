@@ -1,0 +1,83 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
+package module4;
+
+/**
+ *
+ * @author ASUS
+ */
+import java.util.Scanner;
+
+public class PerhitunganHari{
+    static Scanner input = new Scanner(System.in);
+
+    public static void main(String[] args) {
+        Input();
+    }
+
+    private static void Input() {
+        int inputHari;
+
+        System.out.print("Masukkan Jumlah Hari    =   ");
+        inputHari = input.nextInt();
+        Variable(inputHari);
+    }
+
+    public static void Variable(int input) {
+        int tahun, sisatahun, bulan, sisabulan, sisahari;
+
+        tahun = input / 365;
+        sisatahun = input % 365;
+
+        bulan = sisatahun/30;
+        sisabulan = sisatahun%30;
+
+        
+
+        System.out.println("Hasil = " + tahun + " Tahun " + bulan + " Bulan " + sisabulan + " Hari");
+    }
+}
+
+
+
+============================================================================================================================================================= Atau
+
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
+package module4;
+
+/**
+ *
+ * @author ASUS
+ */
+
+import java.util.Scanner; //sus
+public class Perhitungan {
+    public static void main(String[] args) {
+        
+        
+       
+        perhitunganhari();
+        
+        
+    }
+
+    private static void perhitunganhari() {
+        Scanner input = new Scanner (System.in);//sin
+        
+        int hari,bulan,tahun,SatuTahun,SatuBulan;
+        System.out.print("Jumpalh Hari : ");
+        hari = input.nextInt();
+        tahun = hari / 365;
+        SatuTahun = hari % 365;
+        bulan = SatuTahun / 30;
+        SatuBulan = SatuTahun % 30;
+        
+        System.out.println(hari+" Hari : " + tahun + "Tahun : "+bulan+"Bulan : " +SatuBulan+"Hari : ");//sop
+    }
+    
+}
