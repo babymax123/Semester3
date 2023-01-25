@@ -1,0 +1,125 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
+package module3;
+
+/**
+ *
+ * @author ASUS
+ */
+public class Balok1 {
+    
+     public int panjang;
+     public int tinggi;
+     public int lebar;
+
+    /**
+     * @return the panjang
+     */
+    public int getPanjang() {
+        return panjang;
+    }
+
+    /**
+     * @param panjang the panjang to set
+     */
+    public void setPanjang(int panjang) {
+        this.panjang = panjang;
+    }
+
+    /**
+     * @return the tinggi
+     */
+    public int getTinggi() {
+        return tinggi;
+    }
+
+    /**
+     * @param tinggi the tinggi to set
+     */
+    public void setTinggi(int tinggi) {
+        this.tinggi = tinggi;
+    }
+
+    /**
+     * @return the lebar
+     */
+    public int getLebar() {
+        return lebar;
+    }
+
+    /**
+     * @param lebar the lebar to set
+     */
+    public void setLebar(int lebar) {
+        this.lebar = lebar;
+    }
+
+protected void hasil() {
+        Perhitungan1 ph = new Perhitungan1();
+        ph.perhitungan();
+        
+    }
+}
+
+=================================================================================================================================================================
+
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
+package module3;
+import java.util.Scanner;
+/**
+ *
+ * @author ASUS
+ */
+public class Perhitungan1 extends Balok1 {
+   
+        Scanner input = new Scanner(System.in);
+        
+        void perhitungan(){
+            System.out.print("Masukkan panjang balok\t: ");
+            setPanjang(input.nextInt());
+            System.out.print("Masukkan lebar balok\t: ");
+            setLebar(input.nextInt());
+            System.out.print("Masukkan tinggi balok\t: ");
+            setTinggi(input.nextInt());
+            System.out.println("Luas : " + HitungLuas());
+            System.out.println("Volume : " + HitungVolume());
+        }
+            void luas(){
+                HitungLuas();
+            }
+            void volume(){
+                HitungVolume();
+            }
+            private int HitungLuas() {
+                return 2*(panjang * lebar + panjang * tinggi + lebar * tinggi);
+            }
+            private int HitungVolume() {
+                return panjang * lebar * tinggi;
+            }
+          
+    }
+
+=================================================================================================================================================================
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
+package module3;
+
+/**
+ *
+ * @author ASUS
+ */
+public class main {
+    public static void main(String[] args) {
+        Perhitungan1 bl = new Perhitungan1();
+        bl.hasil();
+
+    } 
+}
+   
