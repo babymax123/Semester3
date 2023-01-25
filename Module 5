@@ -1,0 +1,192 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
+package module55;
+
+/**
+ *
+ * @author ASUS
+ */
+import java.util.Scanner;
+
+public class tugas1 {
+    Scanner input = new Scanner(System.in);
+
+    public void sorting(int arr[]){
+        System.out.print("Sebelum Sorting\t: ");
+        for (int bf : arr) {
+            System.out.printf("%d ", bf);
+        } System.out.print("\n");
+
+        for(int i = 0; i < arr.length; i++){
+            for(int j = i + 1; j < arr.length; j++){
+                if(arr[j] < arr[i]){
+                    int swap;
+                    swap = arr[i];
+                    arr[i] = arr[j];
+                    arr[j] = swap;
+                }
+            }
+        }
+
+        System.out.print("Sesudah Sorting\t: ");
+        for (int af : arr) {
+            System.out.printf("%d ", af);
+        } System.out.print("\n");
+
+        search(arr);
+    }
+
+    private void search(int n[]){
+        String src_index;
+
+        System.out.print("\nDari angka \t: ");
+        src_index = input.nextLine();
+
+        if(src_index.matches("[0-9-]+")){
+            int value = Integer.parseInt(src_index);
+
+            System.out.printf("Index ke %d\t\t: ", value);
+            for (int i = 0; i < n.length; i++) {
+                if(value == n[i]){
+                    System.out.print(i+" ");
+                }
+            }
+        } 
+    }
+    public static void main(String[] args) {
+        tugas1 run = new tugas1();
+        
+        int data[] = {-75, -10, 0, 30, 0, -30, 90, 70, 89, -50, -55, -30};
+        run.sorting(data);
+    }
+}
+
+==================================================================================================================================================================
+
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
+package module55;
+
+/**
+ *
+ * @author ASUS
+ */
+import java.util.Arrays;
+import java.util.Scanner;
+
+public class tugas2 {
+    static Scanner input = new Scanner(System.in);
+
+    public void sorting(int arr[]){
+        System.out.println("sebelum Sorting\t: "+Arrays.toString(arr));
+        Arrays.sort(arr);
+        
+        System.out.println("sesudah Sorting\t: "+Arrays.toString(arr));
+        search(arr);
+    }
+
+    public void search(int list[]){
+        int src;
+        System.out.print("\nMencari index dari nomor: ");
+        src = input.nextInt();
+
+        System.out.printf("Index dari %d\t\t: ", src);
+        for (int i = 0; i < list.length; i++) {
+            if(src == list[i]){
+                System.out.printf("%d ", Arrays.binarySearch(list, src));
+            }
+        }
+    }
+
+    public static void main(String[] args) {
+        tugas2 ob = new tugas2();
+        int data[] = {-75, -10, 0, 30, 0, -30, 90, 70, 89, -50, -55, -30};
+        ob.sorting(data);
+    }
+}
+
+=====================================================================================================================================================================
+
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
+package module55;
+
+/**
+ *
+ * @author ASUS
+ */
+import java.util.Scanner;
+import java.util.Arrays;
+
+public class tugas3 {
+    static Scanner input = new Scanner(System.in);
+
+    public void process(){
+        String nilai, simp[];
+        int panj, data[];
+
+        System.out.print("Ukuran\t: ");
+        panj = input.nextInt(); input.nextLine();
+
+        System.out.print("+ data: ");
+        nilai = input.nextLine();
+
+        if(nilai.contains(" ")){
+            simp = nilai.split(" ");
+
+            if(simp.length == panj){
+                data = new int[simp.length];
+                
+                for (int i = 0; i < panj; i++) {
+                    data[i] = Integer.parseInt(simp[i]);
+                }
+
+                Arrays.sort(data);
+                System.out.println("\nsesudah : "+Arrays.toString(data)+"\n");
+
+                ratio(data);
+            } else {
+                System.out.printf("Input harus sama  [%d:%d]\n", simp.length, panj);
+            }
+        } else {
+            System.out.println("Pakai space!");
+        }
+    }
+    private void ratio(int n[]) {
+        int j = 0, k = 0, l = 0;
+
+        for (int i = 0; i < n.length; i++) {
+            if(n[i] > 0){
+                j++;
+            }
+
+            if(n[i] == 0){
+                k++;
+            }
+
+            if(n[i] < 0){
+                l++;
+            }
+        }
+
+        System.out.printf("Positive: %.2f\n", rumus(j, n.length));
+        System.out.printf("Zero\t: %.2f\n", rumus(k, n.length));
+        System.out.printf("Negative: %.2f\n", rumus(l, n.length));
+    }
+
+    private double rumus(int x, int n){
+        // ratio = data / banyak data
+        return (x * 1.0 / n * 1.0);
+    }
+
+    public static void main(String[] args) {
+        tugas3 run = new tugas3();
+        run.process();
+    }
+}
